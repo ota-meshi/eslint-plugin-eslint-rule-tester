@@ -54,7 +54,7 @@ Example **.vscode/settings.json**:
 ```json
 {
   "eslint.options": {
-    "overrideConfigFile": "./path/to/your/apply-only-to-editor.eslintrc.js"
+    "overrideConfigFile": "./path/to/apply-only-to-editor.eslintrc.js"
   }
 }
 ```

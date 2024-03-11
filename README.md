@@ -11,7 +11,6 @@
 [![NPM downloads](https://img.shields.io/npm/dt/eslint-plugin-eslint-rule-tester.svg)](http://www.npmtrends.com/eslint-plugin-eslint-rule-tester)
 [![Build Status](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/actions/workflows/NodeCI.yml/badge.svg?branch=main)](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/actions/workflows/NodeCI.yml)
 
-[![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![changesets](https://img.shields.io/badge/maintained%20with-changesets-176de3.svg)](https://github.com/atlassian/changesets)
 
@@ -80,7 +79,7 @@ Example **.vscode/settings.json**:
 ```json
 {
   "eslint.options": {
-    "overrideConfigFile": "./path/to/your/apply-only-to-editor.eslintrc.js"
+    "overrideConfigFile": "./path/to/apply-only-to-editor.eslintrc.js"
   }
 }
 ```
