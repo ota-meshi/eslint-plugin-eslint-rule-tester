@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
+      - name: Install Packages
+        run: pnpm install
+      - name: Lint
+        run: |+
+          pnpm run build
+          pnpm run lint
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
+      - name: Install Packages
+        run: pnpm install
+      - name: Build
+        run: |+
+          pnpm run update
+          pnpm run build
+  test:
+    name: 'Test for ESLint ${{ matrix.eslint }} on Node.js: ${{ matrix.node }} OS: ${{matrix.os}}'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        eslint: [8]
+        node: [18, 20]
+        include:
+          # On next ESLint version
+          - eslint: ^9.0.0-0
+            node: 20
+            os: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install ESLint ${{ matrix.eslint }}
+        run: |+
+          pnpm install -D eslint@${{ matrix.eslint }}
+          rm -rf node_modules
+        if: matrix.eslint != 8
+      - name: Install Packages
+        run: pnpm install
+      - name: Test
+        run: pnpm run test
+  update-resources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Packages
+        run: pnpm install
+      - name: Update resources
+        run: pnpm run update
+      - name: Check changes
+        run: |
+          git add --all && \
+          git diff-index --cached HEAD --stat --exit-code

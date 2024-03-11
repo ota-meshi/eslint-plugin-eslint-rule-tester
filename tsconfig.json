@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"noEmit": true,
+
+		"target": "es2022",
+		"module": "NodeNext",
+		"moduleResolution": "Node16",
+		"lib": ["es2022", "dom"],
+		"allowJs": true,
+		"checkJs": true,
+		"declaration": true,
+		"strict": true,
+		"noImplicitAny": true,
+
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"baseUrl": ".",
+		"esModuleInterop": true,
+		"outDir": "lib",
+		"paths": {
+			"*": ["typings/*"]
+		},
+		"skipLibCheck": true,
+		"resolveJsonModule": true
+	},
+	"include": ["lib/**/*", "tests/**/*", "tests/utils/**/*", "tools/**/*", "typings/**/*"],
+	"exclude": ["tests/fixtures/**/*"]
+}
