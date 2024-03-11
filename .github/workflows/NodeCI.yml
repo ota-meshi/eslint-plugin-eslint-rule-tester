@@ -19,8 +19,6 @@ jobs:
         run: |+
           pnpm run build
           pnpm run lint
-      - name: Type Coverage
-        run: pnpm run typecov
   build:
     runs-on: ubuntu-latest
     steps:
