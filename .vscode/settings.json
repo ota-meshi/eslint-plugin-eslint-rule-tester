@@ -1,17 +1,10 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "markdown",
-    "json",
-    "jsonc",
-    "yaml"
-  ],
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
+	"eslint.validate": ["javascript", "typescript", "markdown", "json", "jsonc", "yaml"],
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.stylelint": "explicit"
+	},
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

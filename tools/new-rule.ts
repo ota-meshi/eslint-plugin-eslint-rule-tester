@@ -20,7 +20,6 @@ void (async (ruleId) => {
 	const ruleFile = path.resolve(__dirname, `../lib/rules/${ruleId}.js`);
 	const testFile = path.resolve(__dirname, `../tests/lib/rules/${ruleId}.js`);
 	const docFile = path.resolve(__dirname, `../docs/rules/${ruleId}.md`);
-	const fixturesRoot = path.resolve(__dirname, `../tests/fixtures/rules/${ruleId}/`);
 	try {
 		fs.mkdirSync(path.dirname(ruleFile), { recursive: true });
 	} catch {
@@ -33,12 +32,6 @@ void (async (ruleId) => {
 	}
 	try {
 		fs.mkdirSync(path.dirname(docFile), { recursive: true });
-	} catch {
-		// ignore
-	}
-	try {
-		fs.mkdirSync(path.resolve(fixturesRoot, 'valid'), { recursive: true });
-		fs.mkdirSync(path.resolve(fixturesRoot, 'invalid'), { recursive: true });
 	} catch {
 		// ignore
 	}

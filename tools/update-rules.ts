@@ -40,7 +40,7 @@ ${rules
 		(rule) =>
 			`const ${toIdentifier(rule.meta.ruleId)} = {
   meta: ${JSON.stringify(rule.meta)},
-  rule: /** @type {RuleModule} */(require("../rules/${rule.meta.ruleId}"))
+  rule: /** @type {any} */(require("../rules/${rule.meta.ruleId}"))
 }`
 	)
 	.join('\n')}

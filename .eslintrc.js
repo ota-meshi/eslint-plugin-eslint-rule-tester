@@ -128,6 +128,10 @@ module.exports = {
 			rules: {}
 		},
 		{
+			files: ['tests/lib/rules/**'],
+			extends: ['plugin:eslint-rule-tester/recommended-legacy']
+		},
+		{
 			files: ['tests/**'],
 			rules: {
 				'@typescript-eslint/no-misused-promises': 'off',

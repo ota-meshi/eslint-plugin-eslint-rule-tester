@@ -21,6 +21,8 @@ An experimental ESLint plugin that auto-fixes test cases defined in RuleTester.\
 This plugin checks the test cases of the rules of the ESLint plugin, reports any differences between the expected value and the actual rule result, and auto-fixes them.\
 **Note** that this plugin's rules execute the ESLint rules you are creating during the linting check, so if the implementation of the ESLint rules you are creating has side effects, it may break your development environment.
 
+<video controls src="./demo.mp4" title="Demo"></video>
+
 <!--DOCS_IGNORE_START-->
 
 ## :cd: Installation
@@ -43,23 +45,24 @@ npm install --save-dev eslint eslint-plugin-eslint-rule-tester
 
 ### Configuration
 
-Use `.eslintrc.*` file to configure rules. See also: <https://eslint.org/docs/user-guide/configuring>.
+Use `eslint.config.js` file to configure rules. See also: <https://eslint.org/docs/user-guide/configuring>.
 
-Example **.eslintrc.js**:
+Example **eslint.config.js**:
 
-```js
-module.exports = {
-  plugins: ['eslint-rule-tester'],
-  overrides: [
-    {
-      // It is recommended to apply it only to rule test cases.
-      files: ['test/rules/*'],
-      rules: {
-        'eslint-rule-tester/valid-testcase': 'error'
-      }
+<!-- eslint-skip -->
+
+```mjs
+import eslintRuleTester from 'eslint-plugin-eslint-rule-tester';
+export default [
+  {
+    // It is recommended to apply it only to rule test cases.
+    files: ['test/rules/*'],
+    plugins: { 'eslint-rule-tester': eslintRuleTester },
+    rules: {
+      'eslint-rule-tester/valid-testcase': 'error'
     }
-  ]
-};
+  }
+];
 ```
 
 We also recommend that you configure this rule configuration so that it is applied only from the editor extension.

@@ -25,6 +25,6 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true
 	},
-	"include": ["lib/**/*", "tests/lib/**/*", "tests/utils/**/*", "tools/**/*", "typings/**/*"],
+	"include": ["lib/**/*", "tests/**/*", "tests/utils/**/*", "tools/**/*", "typings/**/*"],
 	"exclude": ["tests/fixtures/**/*"]
 }

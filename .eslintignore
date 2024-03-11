@@ -1,0 +1,10 @@
+/.nyc_output
+/coverage
+/node_modules
+!/.vscode
+!/.github
+!/.devcontainer
+/pnpm-lock.yaml
+
+# JSONSchema bug?
+/.devcontainer/devcontainer.json

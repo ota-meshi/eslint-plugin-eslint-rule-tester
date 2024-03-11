@@ -10,7 +10,6 @@ const recommendedContent = `'use strict';
  * in order to update its content execute "pnpm run update"
  */
 module.exports = {
-  plugins: ['eslint-rule-tester'],
   rules: {
     // eslint-plugin-eslint-rule-tester rules
     ${rules
