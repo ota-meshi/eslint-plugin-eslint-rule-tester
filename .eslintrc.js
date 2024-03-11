@@ -125,7 +125,15 @@ module.exports = {
 		},
 		{
 			files: ['lib/rules/**'],
-			rules: {}
+			rules: {
+				'eslint-plugin/require-meta-docs-url': [
+					'error',
+					{
+						pattern:
+							'https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/blob/main/README.md'
+					}
+				]
+			}
 		},
 		{
 			files: ['tests/lib/rules/**'],

@@ -8,7 +8,7 @@ module.exports = {
 	meta: {
 		docs: {
 			description: 'disallow NG identifier (test rule)',
-			url: 'https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/blob/v0.0.0/docs/rules/ng-id-rule-suggest.md'
+			url: 'https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/blob/v0.1.0/docs/rules/ng-id-rule-suggest.md'
 		},
 		fixable: 'code',
 		messages: {
