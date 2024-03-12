@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const { RuleTester } = require('../../rule-tester');
 const rule = require('../../../lib/rules/valid-testcase.js');
 
@@ -10,7 +11,7 @@ const tester = new RuleTester({
 	}
 });
 
-const filename = './tests/fixtures/rules/valid-testcase/test/test.js';
+const filename = path.resolve(__dirname, '../../fixtures/rules/valid-testcase/test/test.js');
 
 tester.run('valid-testcase', /** @type {any} */ (rule), {
 	valid: [
@@ -885,7 +886,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				}
 			});
 			
-			tester.run('ng-id-rule-suggest', rule, {
+			tester.run('vue-ng-element-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
@@ -913,7 +914,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				}
 			});
 			
-			tester.run('ng-id-rule-suggest', rule, {
+			tester.run('vue-ng-element-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
@@ -949,7 +950,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				}
 			});
 			
-			tester.run('ng-id-rule-suggest', rule, {
+			tester.run('vue-ng-element-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
@@ -978,7 +979,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				}
 			});
 			
-			tester.run('ng-id-rule-suggest', rule, {
+			tester.run('vue-ng-element-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
