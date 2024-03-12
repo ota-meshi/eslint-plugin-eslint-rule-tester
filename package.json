@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-eslint-rule-tester",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "An experimental ESLint plugin that auto-fixes test cases defined in RuleTester.",
   "repository": "ota-meshi/eslint-plugin-eslint-rule-tester",
   "homepage": "https://ota-meshi.github.io/eslint-plugin-eslint-rule-tester",

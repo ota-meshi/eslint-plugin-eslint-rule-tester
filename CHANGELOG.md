@@ -1,5 +1,11 @@
 # eslint-plugin-eslint-rule-tester
 
+## 0.3.0
+
+### Minor Changes
+
+- feat: improve resolve config ([#15](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/15))
+
 ## 0.2.3
 
 ### Patch Changes
