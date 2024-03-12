@@ -63,7 +63,9 @@ ${newReadme
 		'[LICENSE](LICENSE)',
 		'[LICENSE](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/blob/main/LICENSE)'
 	)
-	.replace(/\n{3,}/gu, '\n\n')}`
+	.replace(/\n{3,}/gu, '\n\n')
+	.replace(/\]\(\.\.\//gu, '](../../')
+	.replace(/\]\(\.\//gu, '](../')}`
 );
 
 const docsUserGuideFilePath = path.resolve(__dirname, '../docs/user-guide.md');
@@ -81,4 +83,6 @@ void writeAndFormat(
 			/\(https:\/\/ota-meshi.github.io\/eslint-plugin-eslint-rule-tester(.*?)\)/gu,
 			(_s: string, c: string) => `(.${c.endsWith('/') ? c.slice(0, -1) : c}.md)`
 		)
+		.replace(/\]\(\.\.\//gu, '](../../')
+		.replace(/\]\(\.\//gu, '](../')
 );
