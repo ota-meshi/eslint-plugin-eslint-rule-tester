@@ -928,7 +928,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				]
 			})
 			`,
-			errors: [{}, { message: 'Expected 42 but 1.', line: 22, column: 14 }]
+			errors: [
+				{ message: "Test must specify 'output'.", line: 17, column: 6 },
+				{ message: 'Expected 42 but 1.', line: 22, column: 14 }
+			]
 		},
 		{
 			filename,
