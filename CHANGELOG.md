@@ -1,5 +1,11 @@
 # eslint-plugin-eslint-rule-tester
 
+## 0.2.0
+
+### Minor Changes
+
+- feat: resolve more options ([#7](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/7))
+
 ## 0.1.1
 
 ### Patch Changes
