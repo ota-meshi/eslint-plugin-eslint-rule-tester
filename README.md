@@ -104,7 +104,7 @@ These rules relate to possible syntax or logic errors:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [eslint-rule-tester/valid-testcase](https://ota-meshi.github.io/eslint-plugin-eslint-rule-tester/rules/valid-testcase/) | require match the `invalid` test case with the result. | :star::wrench: |
+| [eslint-rule-tester/valid-testcase](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/blob/main/docs/rules/valid-testcase.md) | require match the `invalid` test case with the result. | :star::wrench: |
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->

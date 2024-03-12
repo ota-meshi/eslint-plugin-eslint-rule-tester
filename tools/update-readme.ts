@@ -4,7 +4,10 @@ import renderRulesTableContent from './render-rules';
 import { writeAndFormat } from './lib/write';
 
 const insertText = `\n${renderRulesTableContent(
-	(name) => `https://ota-meshi.github.io/eslint-plugin-eslint-rule-tester/rules/${name}/`
+	// We haven't published the site yet.
+	// (name) => `https://ota-meshi.github.io/eslint-plugin-eslint-rule-tester/rules/${name}/`
+	(name) =>
+		`https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/blob/main/docs/rules/${name}.md`
 )}\n`;
 
 const readmeFilePath = path.resolve(__dirname, '../README.md');
