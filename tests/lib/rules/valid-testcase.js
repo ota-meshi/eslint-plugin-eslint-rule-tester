@@ -35,6 +35,38 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				]
 			})
 			`
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/vue-ng-element-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  languageOptions: { parser: require('vue-eslint-parser') },
+					  errors: [
+						{
+							message: "NG.",
+							line: 1
+						},
+					  ],
+					  output: \`<template><ok /></template>\`,
+					},
+				]
+			})
+			`
 		}
 	],
 	invalid: [
@@ -710,6 +742,257 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Expected "fix" but "Fix to OK.".', line: 23, column: 16 },
 				{ message: 'Expected "NG; OK;" but "OK; NG;".', line: 24, column: 18 },
 				{ message: 'Error should have suggestions but not definitions.', line: 28, column: 12 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/vue-ng-element-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  languageOptions: { parser: require('vue-eslint-parser') },
+					  errors: [
+						{
+							message: "NG.",
+							line: 42
+						},
+					  ],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/vue-ng-element-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  languageOptions: { parser: require('vue-eslint-parser') },
+					  errors: [
+						{
+							message: "NG.",
+							line: 1
+						},
+					  ],output: \`<template><ok /></template>\`,
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Expected 42 but 1.', line: 22, column: 14 }
+			]
+		},
+		{
+			filename,
+			code: `
+			import { RuleTester } from 'eslint';
+			import rule from '../rules/vue-ng-element-rule.js';
+			import parser from 'vue-eslint-parser';
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  languageOptions: { parser },
+					  errors: [
+						{
+							message: "NG.",
+							line: 42
+						},
+					  ],
+					},
+				]
+			})
+			`,
+			output: `
+			import { RuleTester } from 'eslint';
+			import rule from '../rules/vue-ng-element-rule.js';
+			import parser from 'vue-eslint-parser';
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  languageOptions: { parser },
+					  errors: [
+						{
+							message: "NG.",
+							line: 1
+						},
+					  ],output: \`<template><ok /></template>\`,
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Expected 42 but 1.', line: 22, column: 14 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/vue-ng-element-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module',
+					parser: require('vue-eslint-parser')
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  errors: [
+						{
+							message: "NG.",
+							line: 42
+						},
+					  ],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/vue-ng-element-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module',
+					parser: require('vue-eslint-parser')
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  errors: [
+						{
+							message: "NG.",
+							line: 1
+						},
+					  ],output: \`<template><ok /></template>\`,
+					},
+				]
+			})
+			`,
+			errors: [{}, { message: 'Expected 42 but 1.', line: 22, column: 14 }]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			import { RuleTester } from 'eslint';
+			import rule from '../rules/vue-ng-element-rule.js';
+			import parser from 'vue-eslint-parser';
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module',
+					parser
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  errors: [
+						{
+							message: "NG.",
+							line: 42
+						},
+					  ],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			import { RuleTester } from 'eslint';
+			import rule from '../rules/vue-ng-element-rule.js';
+			import parser from 'vue-eslint-parser';
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module',
+					parser
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+					  code: '<template><ng /></template>',
+					  errors: [
+						{
+							message: "NG.",
+							line: 1
+						},
+					  ],output: \`<template><ok /></template>\`,
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 18, column: 6 },
+				{ message: 'Expected 42 but 1.', line: 23, column: 14 }
 			]
 		}
 	]
