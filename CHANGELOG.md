@@ -1,5 +1,11 @@
 # eslint-plugin-eslint-rule-tester
 
+## 0.2.1
+
+### Patch Changes
+
+- docs: fix readme ([#9](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/9))
+
 ## 0.2.0
 
 ### Minor Changes
