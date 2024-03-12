@@ -23,9 +23,36 @@ This rule checks the test cases of the rules of the ESLint plugin, reports any d
 <!--eslint-skip-->
 
 ```js
-/* ✓ GOOD */
+'use strict';
 
-/* ✗ BAD */
+const { RuleTester } = require('eslint');
+/* A rule that reports an identifier named `NG` and rewrites it to `OK`. */
+const rule = require('../rules/ng-id-rule.js');
+
+const tester = new RuleTester({
+  languageOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module'
+  }
+});
+
+tester.run('ng-id-rule', rule, {
+  valid: ['foo', 'bar'],
+  invalid: [
+    /* ✓ GOOD */
+    {
+      code: 'NG',
+      errors: [{ message: 'The identifier `NG` is not allowed.', line: 1 }],
+      output: 'OK'
+    },
+    /* ✗ BAD */
+    {
+      code: 'NG',
+      errors: [{ message: 'foooo?', line: 42 }],
+      output: 'foo'
+    }
+  ]
+});
 ```
 
 </ESLintCodeBlock>
