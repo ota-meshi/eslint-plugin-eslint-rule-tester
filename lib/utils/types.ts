@@ -23,8 +23,8 @@ export interface Config extends Record<string, unknown> {
 export interface RuleTesterConfig extends Record<string, unknown> {
 	ast: ConfigAST;
 }
-export type LinterWorkerServise = {
-	getLinterResule: (config: Config) => Messages | null;
+export type LinterWorkerService = {
+	getLinterResult: (config: Config) => Messages | null;
 	terminate: () => void;
 };
 export type Messages = {
@@ -46,7 +46,7 @@ export type Suggestion = {
 	messageId?: string;
 	output: string;
 };
-export type WorkerServise = {
+export type WorkerService = {
 	call: (ruleName: string, rulePath: string, config: Config) => Messages;
 	terminate: () => void;
 	isTs: boolean;
