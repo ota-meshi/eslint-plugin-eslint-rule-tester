@@ -13,7 +13,7 @@ module.exports = {
 		},
 		fixable: 'code',
 		messages: {
-			fobidden: 'NG.'
+			forbidden: 'NG.'
 		},
 		schema: [],
 		type: 'suggestion'
@@ -28,7 +28,7 @@ module.exports = {
 					const open = tokenStore.getFirstToken(node);
 					context.report({
 						loc: node.loc,
-						messageId: 'fobidden',
+						messageId: 'forbidden',
 						fix: (fixer) => fixer.replaceTextRange(open.range, '<ok')
 					});
 				}

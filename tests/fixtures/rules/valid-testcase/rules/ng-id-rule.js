@@ -13,7 +13,7 @@ module.exports = {
 		},
 		fixable: 'code',
 		messages: {
-			fobidden: 'NG.'
+			forbidden: 'NG.'
 		},
 		schema: [],
 		type: 'suggestion'
@@ -26,7 +26,7 @@ module.exports = {
 				if (node.name === 'NG') {
 					context.report({
 						loc: node.loc,
-						messageId: 'fobidden',
+						messageId: 'forbidden',
 						fix: (fixer) => fixer.replaceTextRange(node.range, 'OK')
 					});
 				}

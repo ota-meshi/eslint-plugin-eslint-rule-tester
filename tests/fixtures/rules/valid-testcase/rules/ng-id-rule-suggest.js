@@ -13,7 +13,7 @@ module.exports = {
 		},
 		fixable: 'code',
 		messages: {
-			fobidden: 'NG.',
+			forbidden: 'NG.',
 			fix: 'Fix to OK.'
 		},
 		schema: [],
@@ -28,7 +28,7 @@ module.exports = {
 				if (node.name === 'NG') {
 					context.report({
 						loc: node.loc,
-						messageId: 'fobidden',
+						messageId: 'forbidden',
 						suggest: [
 							{
 								messageId: 'fix',
