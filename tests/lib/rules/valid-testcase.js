@@ -533,7 +533,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							{
 								message: "NG.",
 								suggestions: [
-									{messageId: "fix"}
+									{ messageId: "fix" }
 								]
 							},
 							{ message: "NG.", line: 1, column: 5 }
@@ -1159,6 +1159,229 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Expected 2 but 1.', line: 22, column: 16 },
 				{ message: "Error should not have 'suggestions'.", line: 23, column: 9 },
 				{ message: "Test should not have 'output'.", line: 26, column: 7 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+							}
+						],
+						
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+								messageId: "forbidden"
+							}
+						],
+						output: \`OK\`
+						
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: "Test must specify either 'messageId' or 'message'.", line: 19, column: 8 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [{ message: "NG.", line: 1, column: 1 }, { message: "NG.", line: 1, column: 5 }],
+						output: \`OK; OK;\`
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [
+						],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [
+							{ message: "NG.", line: 1, column: 1 }, { message: "NG.", line: 1, column: 5 }
+						],
+						output: \`OK; OK;\`
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
+			]
+		},
+		{
+			filename,
+			code: String.raw`
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG("\\n");',
+						errors: [
+						],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG("\\\\n");',
+						errors: [
+							{ message: "NG.", line: 1, column: 1 }, { message: "NG.", line: 1, column: 5 }
+						],
+						output: String.raw\`OK; OK("\\n");\`
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
 			]
 		}
 	]
