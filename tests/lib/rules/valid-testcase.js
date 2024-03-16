@@ -110,7 +110,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
-						code: 'NG', errors: [{ message: "NG.", line: 1, column: 1 }],
+						code: 'NG',
+						errors: [{ message: "NG.", line: 1, column: 1 }]
 					},
 				]
 			})
@@ -137,7 +138,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 					{
 						code: 'NG',
 						errors: [
-							{message:'foo',line:42},
+							{
+								message:'foo',
+								line:42
+							},
 						  	'bar'
 					    ]
 					},
@@ -162,17 +166,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 					{
 						code: 'NG',
 						errors: [
-							{message:"NG.",line:1}
-					    ]
-					, output: \`OK\`},
+							{
+								message:"NG.",
+								line:1
+							}
+					    ],
+						output: \`OK\`
+					},
 				]
 			})
 			`,
 			errors: [
 				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 17 },
-				{ message: 'Expected 42 but 1.', line: 19, column: 28 },
-				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 10 }
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 17 },
+				{ message: 'Expected 42 but 1.', line: 21, column: 14 },
+				{ message: 'Should have 1 error but had 2 definitions.', line: 23, column: 10 }
 			]
 		},
 		{
@@ -222,8 +230,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 						errors: [
 							"NG.",
 						  	'bar'
-					    ]
-					, output: \`OK\`},
+					    ],
+						output: \`OK\`
+					},
 				]
 			})
 			`,
@@ -250,12 +259,13 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						'foo',
-						'bar'
-				      ], 
-					  output: 'foo'
+					{
+						code: 'NG', 
+					  	errors: [
+							'foo',
+							'bar'
+				      	], 
+					  	output: 'foo'
 					},
 				]
 			})
@@ -275,20 +285,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						"NG.",
-						'bar'
-				      ], 
-					  output: \`OK\`
+					{
+						code: 'NG', 
+					  	errors: [
+							"NG.",
+							'bar'
+				      	], 
+					  	output: \`OK\`
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: 'Expected \'foo\' but "NG.".', line: 18, column: 7 },
-				{ message: 'Should have 1 error but had 2 definitions.', line: 19, column: 7 },
-				{ message: 'Expected "foo" but "OK".', line: 21, column: 16 }
+				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 },
+				{ message: 'Expected "foo" but "OK".', line: 22, column: 17 }
 			]
 		},
 		{
@@ -308,11 +319,12 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						'foo',
-						'bar'
-				      ],
+					{
+						code: 'NG', 
+					  	errors: [
+							'foo',
+							'bar'
+				      	],
 					},
 				]
 			})
@@ -332,19 +344,20 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						{ message: 'foo', suggestions: [{ messageId: "fix", output: \`OK\` }] },
-						'bar'
-				      ],
+					{
+						code: 'NG', 
+					  	errors: [
+							{ message: 'foo', suggestions: [{ messageId: "fix", output: \`OK\` }] },
+							'bar'
+				      	],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 18, column: 7 },
-				{ message: 'Expected \'foo\' but "NG.".', line: 18, column: 7 },
-				{ message: 'Should have 1 error but had 2 definitions.', line: 19, column: 7 }
+				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 8 },
+				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 }
 			]
 		},
 		{
@@ -423,12 +436,13 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{ message: 'foo' },
-						'bar',
-						'baz'
-				      ],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{ message: 'foo' },
+							'bar',
+							'baz'
+				      	],
 					},
 				]
 			})
@@ -448,22 +462,23 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{ message: "NG." , suggestions: [{ messageId: "fix", output: \`OK; NG;\` }]},
-						{ message: 'bar', suggestions: [{ messageId: "fix", output: \`NG; OK;\` }] },
-						'baz'
-				      ],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{ message: "NG." },
+							{ message: 'bar', suggestions: [{ messageId: "fix", output: \`NG; OK;\` }] },
+							'baz'
+				      	],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 18, column: 7 },
-				{ message: 'Expected "foo" but "NG.".', line: 18, column: 18 },
-				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 7 },
-				{ message: 'Expected \'bar\' but "NG.".', line: 19, column: 7 },
-				{ message: 'Should have 2 errors but had 3 definitions.', line: 20, column: 7 }
+				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 8 },
+				{ message: 'Expected "foo" but "NG.".', line: 19, column: 19 },
+				{ message: "Error should have 'suggestions' but not definitions.", line: 20, column: 8 },
+				{ message: 'Expected \'bar\' but "NG.".', line: 20, column: 8 },
+				{ message: 'Should have 2 errors but had 3 definitions.', line: 21, column: 8 }
 			]
 		},
 		{
@@ -483,15 +498,16 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: 'foo',
-							suggestions: [
-								{}
-							]
-						},
-				      ],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{}
+								]
+							},
+						],
 					},
 				]
 			})
@@ -511,24 +527,26 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: "NG.",
-							suggestions: [
-								{messageId: "fix"}
-							]
-						},
-				      { message: "NG.", line: 1, column: 5 }],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{messageId: "fix"}
+								]
+							},
+							{ message: "NG.", line: 1, column: 5 }
+						],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: 'Should have 2 errors but had 1 definitions.', line: 18, column: 7 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 17 },
-				{ message: "Test must specify either 'messageId' or 'desc'.", line: 21, column: 9 },
-				{ message: "Test must specify 'output'.", line: 21, column: 9 }
+				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: "Test must specify either 'messageId' or 'desc'.", line: 22, column: 10 },
+				{ message: "Test must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -548,17 +566,18 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: 'foo',
-							suggestions: [
-								{
-									messageId: "fix"
-								}
-							]
-						},
-				      ],
+					{
+						code: 'NG; NG;', 
+						errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{
+										messageId: "fix"
+									}
+								]
+							},
+						],
 					},
 				]
 			})
@@ -578,25 +597,28 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: "NG.",
-							suggestions: [
-								{
-									messageId: "fix"
-								, output: \`OK; NG;\`}
-							]
-						},
-				      { message: "NG.", line: 1, column: 5 }],
+					{
+						code: 'NG; NG;', 
+						errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK; NG;\`
+									}
+								]
+							},
+							{ message: "NG.", line: 1, column: 5 }
+						],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: 'Should have 2 errors but had 1 definitions.', line: 18, column: 7 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 17 },
-				{ message: "Test must specify 'output'.", line: 21, column: 9 }
+				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: "Test must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -661,7 +683,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 								}
 							]
 						},
-				      	{ message:"NG.", line:1, column:5 , suggestions: [{ messageId: "fix", output: \`NG; OK;\` }]}
+				      	{ message:"NG.", line:1, column:5, suggestions: [{ messageId: "fix", output: \`NG; OK;\` }] }
 					  ],
 					},
 				]
@@ -735,7 +757,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 								}
 							]
 						},
-				      	{ message:"NG.", line:1, column:5 , suggestions: [{ messageId: "fix", output: \`NG; OK;\` }]}
+				      	{ message:"NG.", line:1, column:5, suggestions: [{ messageId: "fix", output: \`NG; OK;\` }] }
 					  ],
 					},
 				]
@@ -800,7 +822,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -863,7 +886,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -926,7 +950,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -991,7 +1016,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -1056,7 +1082,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 								line:1,
 								column:1
 							}
-						], output: \`OK\`,
+						],
+						output: \`OK\`
 						
 					},
 				]
