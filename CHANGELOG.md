@@ -1,5 +1,13 @@
 # eslint-plugin-eslint-rule-tester
 
+## 0.4.0
+
+### Minor Changes
+
+- feat: improve fixer ([#20](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/20))
+
+- feat: improved to report extra properties ([#18](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/18))
+
 ## 0.3.0
 
 ### Minor Changes
