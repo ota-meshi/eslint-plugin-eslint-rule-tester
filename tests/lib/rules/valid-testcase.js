@@ -363,7 +363,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error must specify 'suggestions'.", line: 19, column: 8 },
+				{ message: "Error item must specify 'suggestions'.", line: 19, column: 8 },
 				{ message: 'Expected "foo" but the result was "NG.".', line: 19, column: 8 },
 				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 }
 			]
@@ -427,7 +427,11 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Should have 2 suggestions but had 0 definitions.', line: 18, column: 38 },
 				{ message: 'Expected "bar" but the result was "NG.".', line: 19, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 19, column: 39 },
-				{ message: "Test must specify either 'messageId' or 'desc'.", line: 19, column: 39 },
+				{
+					message: "Suggestion item must specify either 'messageId' or 'desc'.",
+					line: 19,
+					column: 39
+				},
 				{ message: 'Should have 2 errors but had 3 definitions.', line: 20, column: 7 }
 			]
 		},
@@ -492,9 +496,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error must specify 'suggestions'.", line: 19, column: 8 },
+				{ message: "Error item must specify 'suggestions'.", line: 19, column: 8 },
 				{ message: 'Expected "foo" but the result was "NG.".', line: 19, column: 19 },
-				{ message: "Error must specify 'suggestions'.", line: 20, column: 8 },
+				{ message: "Error item must specify 'suggestions'.", line: 20, column: 8 },
 				{ message: 'Expected "bar" but the result was "NG.".', line: 20, column: 8 },
 				{ message: 'Should have 2 errors but had 3 definitions.', line: 21, column: 8 }
 			]
@@ -573,7 +577,11 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
 				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 10 },
-				{ message: "Test must specify either 'messageId' or 'desc'.", line: 22, column: 10 },
+				{
+					message: "Suggestion item must specify either 'messageId' or 'desc'.",
+					line: 22,
+					column: 10
+				},
 				{ message: "Test case must specify 'output'.", line: 22, column: 10 }
 			]
 		},
@@ -735,7 +743,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 9 },
 				{ message: 'Expected "foo" but the result was "fix".', line: 23, column: 21 },
 				{ message: 'Expected "NG; OK;" but the result was "OK; NG;".', line: 24, column: 18 },
-				{ message: "Error must specify 'suggestions'.", line: 28, column: 12 }
+				{ message: "Error item must specify 'suggestions'.", line: 28, column: 12 }
 			]
 		},
 		{
@@ -814,7 +822,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 9 },
 				{ message: 'Expected "fix" but the result was "Fix to OK.".', line: 23, column: 16 },
 				{ message: 'Expected "NG; OK;" but the result was "OK; NG;".', line: 24, column: 18 },
-				{ message: "Error must specify 'suggestions'.", line: 28, column: 12 }
+				{ message: "Error item must specify 'suggestions'.", line: 28, column: 12 }
 			]
 		},
 		{
@@ -1141,7 +1149,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
 				{
 					message:
-						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+						"Error item should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
 					line: 23,
 					column: 9
 				}
@@ -1212,7 +1220,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Expected 2 but the result was 1.', line: 22, column: 16 },
 				{
 					message:
-						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+						"Error item should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
 					line: 23,
 					column: 9
 				},
@@ -1295,7 +1303,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Expected 2 but the result was 1.', line: 23, column: 16 },
 				{
 					message:
-						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+						"Error item should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
 					line: 24,
 					column: 9
 				}
@@ -1357,10 +1365,14 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test case must specify either 'messageId' or 'message'.", line: 20, column: 8 },
+				{
+					message: "Error item must specify either 'messageId' or 'message'.",
+					line: 20,
+					column: 8
+				},
 				{
 					message:
-						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+						"Error item should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
 					line: 21,
 					column: 9
 				}
@@ -1424,7 +1436,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
-				{ message: "Test case must specify either 'messageId' or 'message'.", line: 19, column: 8 }
+				{ message: "Error item must specify either 'messageId' or 'message'.", line: 19, column: 8 }
 			]
 		},
 		{
@@ -1677,9 +1689,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error must specify 'suggestions'.", line: 20, column: 8 },
+				{ message: "Error item must specify 'suggestions'.", line: 20, column: 8 },
 				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 8 },
-				{ message: "Error must specify 'suggestions'.", line: 21, column: 8 },
+				{ message: "Error item must specify 'suggestions'.", line: 21, column: 8 },
 				{ message: 'Expected "bar" but the result was "NG.".', line: 21, column: 8 }
 			]
 		},
@@ -2008,13 +2020,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ messageId: 'extraMessageId', line: 21, column: 9 },
-				{ message: "Error should not specify both 'data' and 'message'.", line: 22, column: 9 },
 				{
-					message: "Error should not specify both 'message' and a 'messageId'.",
+					messageId: 'extraData',
+					line: 22,
+					column: 9
+				},
+				{
+					messageId: 'extraMessageId',
 					line: 26,
 					column: 32
 				},
-				{ message: "Error should not specify both 'data' and 'message'.", line: 26, column: 50 }
+				{
+					messageId: 'extraData',
+					line: 26,
+					column: 50
+				}
 			]
 		},
 		{
@@ -2083,15 +2103,23 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error should not specify both 'data' and 'message'.", line: 21, column: 9 },
 				{
-					message: "Error should not specify both 'message' and a 'messageId'.",
+					message: "Error item should not specify both 'data' and 'message'.",
+					line: 21,
+					column: 9
+				},
+				{
+					message: "Error item should not specify both 'message' and a 'messageId'.",
 					line: 24,
 					column: 9
 				},
-				{ message: "Error should not specify both 'data' and 'message'.", line: 26, column: 32 },
 				{
-					message: "Error should not specify both 'message' and a 'messageId'.",
+					message: "Suggestion item should not specify both 'data' and 'message'.",
+					line: 26,
+					column: 32
+				},
+				{
+					message: "Error item should not specify both 'message' and a 'messageId'.",
 					line: 26,
 					column: 52
 				}
@@ -2294,8 +2322,16 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test case must specify either 'messageId' or 'message'.", line: 19, column: 8 },
-				{ message: "Test must specify either 'messageId' or 'desc'.", line: 21, column: 10 }
+				{
+					message: "Error item must specify either 'messageId' or 'message'.",
+					line: 19,
+					column: 8
+				},
+				{
+					message: "Suggestion item must specify either 'messageId' or 'desc'.",
+					line: 21,
+					column: 10
+				}
 			]
 		},
 		{
