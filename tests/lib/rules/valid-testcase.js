@@ -118,7 +118,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				]
 			})
 			`,
-			errors: [{ message: "Error should have 'errors' but not definitions.", line: 16, column: 6 }]
+			errors: [{ message: "Test case must specify 'errors'.", line: 16, column: 6 }]
 		},
 		{
 			filename,
@@ -179,9 +179,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: 'Expected "foo" but "NG.".', line: 20, column: 17 },
-				{ message: 'Expected 42 but 1.', line: 21, column: 14 },
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 17 },
+				{ message: 'Expected 42 but the result was 1.', line: 21, column: 14 },
 				{ message: 'Should have 1 error but had 2 definitions.', line: 23, column: 10 }
 			]
 		},
@@ -239,8 +239,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 19, column: 8 },
 				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 10 }
 			]
 		},
@@ -299,9 +299,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 19, column: 8 },
 				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 },
-				{ message: 'Expected "foo" but "OK".', line: 22, column: 17 }
+				{ message: 'Expected "foo" but the result was "OK".', line: 22, column: 17 }
 			]
 		},
 		{
@@ -363,8 +363,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 8 },
-				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: "Error must specify 'suggestions'.", line: 19, column: 8 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 19, column: 8 },
 				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 }
 			]
 		},
@@ -423,9 +423,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: 'Expected "foo" but "NG.".', line: 18, column: 18 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 18, column: 18 },
 				{ message: 'Should have 2 suggestions but had 0 definitions.', line: 18, column: 38 },
-				{ message: 'Expected "bar" but "NG.".', line: 19, column: 18 },
+				{ message: 'Expected "bar" but the result was "NG.".', line: 19, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 19, column: 39 },
 				{ message: "Test must specify either 'messageId' or 'desc'.", line: 19, column: 39 },
 				{ message: 'Should have 2 errors but had 3 definitions.', line: 20, column: 7 }
@@ -492,10 +492,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 8 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 19 },
-				{ message: "Error should have 'suggestions' but not definitions.", line: 20, column: 8 },
-				{ message: 'Expected \'bar\' but "NG.".', line: 20, column: 8 },
+				{ message: "Error must specify 'suggestions'.", line: 19, column: 8 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 19, column: 19 },
+				{ message: "Error must specify 'suggestions'.", line: 20, column: 8 },
+				{ message: 'Expected "bar" but the result was "NG.".', line: 20, column: 8 },
 				{ message: 'Should have 2 errors but had 3 definitions.', line: 21, column: 8 }
 			]
 		},
@@ -563,10 +563,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
-				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 10 },
 				{ message: "Test must specify either 'messageId' or 'desc'.", line: 22, column: 10 },
-				{ message: "Test must specify 'output'.", line: 22, column: 10 }
+				{ message: "Test case must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -638,9 +638,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
-				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 10 },
-				{ message: "Test must specify 'output'.", line: 22, column: 10 }
+				{ message: "Test case must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -717,9 +717,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 9 },
-				{ message: 'Expected "foo" but "fix".', line: 23, column: 21 },
-				{ message: 'Expected "NG; OK;" but "OK; NG;".', line: 24, column: 18 },
-				{ message: "Error should have 'suggestions' but not definitions.", line: 28, column: 12 }
+				{ message: 'Expected "foo" but the result was "fix".', line: 23, column: 21 },
+				{ message: 'Expected "NG; OK;" but the result was "OK; NG;".', line: 24, column: 18 },
+				{ message: "Error must specify 'suggestions'.", line: 28, column: 12 }
 			]
 		},
 		{
@@ -796,9 +796,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 9 },
-				{ message: 'Expected "fix" but "Fix to OK.".', line: 23, column: 16 },
-				{ message: 'Expected "NG; OK;" but "OK; NG;".', line: 24, column: 18 },
-				{ message: "Error should have 'suggestions' but not definitions.", line: 28, column: 12 }
+				{ message: 'Expected "fix" but the result was "Fix to OK.".', line: 23, column: 16 },
+				{ message: 'Expected "NG; OK;" but the result was "OK; NG;".', line: 24, column: 18 },
+				{ message: "Error must specify 'suggestions'.", line: 28, column: 12 }
 			]
 		},
 		{
@@ -861,8 +861,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: 'Expected 42 but 1.', line: 22, column: 14 }
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Expected 42 but the result was 1.', line: 22, column: 14 }
 			]
 		},
 		{
@@ -925,8 +925,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: 'Expected 42 but 1.', line: 22, column: 14 }
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Expected 42 but the result was 1.', line: 22, column: 14 }
 			]
 		},
 		{
@@ -989,8 +989,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 17, column: 6 },
-				{ message: 'Expected 42 but 1.', line: 22, column: 14 }
+				{ message: "Test case must specify 'output'.", line: 17, column: 6 },
+				{ message: 'Expected 42 but the result was 1.', line: 22, column: 14 }
 			]
 		},
 		{
@@ -1055,8 +1055,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 18, column: 6 },
-				{ message: 'Expected 42 but 1.', line: 23, column: 14 }
+				{ message: "Test case must specify 'output'.", line: 18, column: 6 },
+				{ message: 'Expected 42 but the result was 1.', line: 23, column: 14 }
 			]
 		},
 		{
@@ -1122,8 +1122,13 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: "Error should not have 'suggestions'.", line: 23, column: 9 }
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
+				{
+					message:
+						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+					line: 23,
+					column: 9
+				}
 			]
 		},
 		{
@@ -1188,9 +1193,19 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: 'Expected 2 but 1.', line: 22, column: 16 },
-				{ message: "Error should not have 'suggestions'.", line: 23, column: 9 },
-				{ message: "Test should not have 'output'.", line: 26, column: 7 }
+				{ message: 'Expected 2 but the result was 1.', line: 22, column: 16 },
+				{
+					message:
+						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+					line: 23,
+					column: 9
+				},
+				{
+					message:
+						"Test case should have no 'output'. Because there are no 'output' in the test case result.",
+					line: 26,
+					column: 7
+				}
 			]
 		},
 		{
@@ -1255,9 +1270,19 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test should not have 'output'.", line: 17, column: 7 },
-				{ message: 'Expected 2 but 1.', line: 23, column: 16 },
-				{ message: "Error should not have 'suggestions'.", line: 24, column: 9 }
+				{
+					message:
+						"Test case should have no 'output'. Because there are no 'output' in the test case result.",
+					line: 17,
+					column: 7
+				},
+				{ message: 'Expected 2 but the result was 1.', line: 23, column: 16 },
+				{
+					message:
+						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+					line: 24,
+					column: 9
+				}
 			]
 		},
 		{
@@ -1316,8 +1341,13 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify either 'messageId' or 'message'.", line: 20, column: 8 },
-				{ message: "Error should not have 'suggestions'.", line: 21, column: 9 }
+				{ message: "Test case must specify either 'messageId' or 'message'.", line: 20, column: 8 },
+				{
+					message:
+						"Error should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+					line: 21,
+					column: 9
+				}
 			]
 		},
 		{
@@ -1377,8 +1407,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: "Test must specify either 'messageId' or 'message'.", line: 19, column: 8 }
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
+				{ message: "Test case must specify either 'messageId' or 'message'.", line: 19, column: 8 }
 			]
 		},
 		{
@@ -1432,7 +1462,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
 				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
 			]
 		},
@@ -1488,7 +1518,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
 				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
 			]
 		},
@@ -1544,7 +1574,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: "Test case must specify 'output'.", line: 16, column: 6 },
 				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
 			]
 		},
@@ -1631,10 +1661,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 20, column: 8 },
-				{ message: 'Expected \'foo\' but "NG.".', line: 20, column: 8 },
-				{ message: "Error should have 'suggestions' but not definitions.", line: 21, column: 8 },
-				{ message: 'Expected \'bar\' but "NG.".', line: 21, column: 8 }
+				{ message: "Error must specify 'suggestions'.", line: 20, column: 8 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 8 },
+				{ message: "Error must specify 'suggestions'.", line: 21, column: 8 },
+				{ message: 'Expected "bar" but the result was "NG.".', line: 21, column: 8 }
 			]
 		},
 		{
@@ -1743,9 +1773,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: 'Expected "foo" but "NG.".', line: 21, column: 18 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 21, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 23, column: 10 },
-				{ message: 'Expected "bar" but "NG.".', line: 31, column: 18 }
+				{ message: 'Expected "bar" but the result was "NG.".', line: 31, column: 18 }
 			]
 		},
 		{
@@ -1819,8 +1849,12 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			})
 			`,
 			errors: [
-				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
-				{ message: 'Expected "OK;\\n\\t\\t\\t\\t\\t\\tNG;" but "OK;".', line: 24, column: 19 },
+				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 18 },
+				{
+					message: 'Expected "OK;\\n\\t\\t\\t\\t\\t\\tNG;" but the result was "OK;".',
+					line: 24,
+					column: 19
+				},
 				{ message: 'Should have 2 suggestions but had 3 definitions.', line: 28, column: 10 }
 			]
 		}
