@@ -30,6 +30,9 @@ export type LinterWorkerService = {
 export type Messages = {
 	errors: Message[];
 	output?: string | null;
+	meta: {
+		messages?: Record<string, string | undefined>;
+	};
 };
 export type Message = {
 	line: number;

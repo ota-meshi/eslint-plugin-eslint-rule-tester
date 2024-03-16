@@ -7,15 +7,17 @@
 module.exports = {
 	meta: {
 		docs: {
-			description: 'disallow NG identifier without fixer (test rule)',
+			description: 'disallow NG identifier with data(test rule)',
 			// eslint-disable-next-line eslint-plugin/require-meta-docs-url -- For test
 			url: 'foo'
 		},
 		messages: {
-			forbidden: 'NG.'
+			forbidden: '{{id}}.',
+			fix: 'Fix to {{id}}.'
 		},
 		schema: [],
-		type: 'suggestion'
+		type: 'suggestion',
+		hasSuggestions: true
 	},
 	/** @param {RuleContext} context  */
 	create(context) {
@@ -25,7 +27,19 @@ module.exports = {
 				if (node.name === 'NG') {
 					context.report({
 						loc: node.loc,
-						messageId: 'forbidden'
+						messageId: 'forbidden',
+						data: {
+							id: node.name
+						},
+						suggest: [
+							{
+								messageId: 'fix',
+								data: {
+									id: 'OK'
+								},
+								fix: (fixer) => fixer.replaceTextRange(node.range, 'OK')
+							}
+						]
 					});
 				}
 			}
