@@ -14,7 +14,8 @@ module.exports = {
 		fixable: 'code',
 		messages: {
 			forbidden: 'NG.',
-			fix: 'Fix to OK.'
+			fix: 'Fix to OK.',
+			fixToRemove: 'Fix to remove.'
 		},
 		schema: [],
 		type: 'suggestion',
@@ -33,6 +34,10 @@ module.exports = {
 							{
 								messageId: 'fix',
 								fix: (fixer) => fixer.replaceTextRange(node.range, 'OK')
+							},
+							{
+								messageId: 'fixToRemove',
+								fix: (fixer) => fixer.removeRange(node.range)
 							}
 						]
 					});

@@ -110,7 +110,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
-						code: 'NG', errors: [{ message: "NG.", line: 1, column: 1 }],
+						code: 'NG',
+						errors: [
+							{ message: "NG.", line: 1, column: 1 }
+						]
 					},
 				]
 			})
@@ -137,7 +140,10 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 					{
 						code: 'NG',
 						errors: [
-							{message:'foo',line:42},
+							{
+								message:'foo',
+								line:42
+							},
 						  	'bar'
 					    ]
 					},
@@ -162,17 +168,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 					{
 						code: 'NG',
 						errors: [
-							{message:"NG.",line:1}
-					    ]
-					, output: \`OK\`},
+							{
+								message:"NG.",
+								line:1
+							}
+					    ],
+						output: \`OK\`
+					},
 				]
 			})
 			`,
 			errors: [
 				{ message: "Test must specify 'output'.", line: 16, column: 6 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 17 },
-				{ message: 'Expected 42 but 1.', line: 19, column: 28 },
-				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 10 }
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 17 },
+				{ message: 'Expected 42 but 1.', line: 21, column: 14 },
+				{ message: 'Should have 1 error but had 2 definitions.', line: 23, column: 10 }
 			]
 		},
 		{
@@ -222,8 +232,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 						errors: [
 							"NG.",
 						  	'bar'
-					    ]
-					, output: \`OK\`},
+					    ],
+						output: \`OK\`
+					},
 				]
 			})
 			`,
@@ -250,12 +261,13 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						'foo',
-						'bar'
-				      ], 
-					  output: 'foo'
+					{
+						code: 'NG', 
+					  	errors: [
+							'foo',
+							'bar'
+				      	], 
+					  	output: 'foo'
 					},
 				]
 			})
@@ -275,20 +287,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						"NG.",
-						'bar'
-				      ], 
-					  output: \`OK\`
+					{
+						code: 'NG', 
+					  	errors: [
+							"NG.",
+							'bar'
+				      	], 
+					  	output: \`OK\`
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: 'Expected \'foo\' but "NG.".', line: 18, column: 7 },
-				{ message: 'Should have 1 error but had 2 definitions.', line: 19, column: 7 },
-				{ message: 'Expected "foo" but "OK".', line: 21, column: 16 }
+				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 },
+				{ message: 'Expected "foo" but "OK".', line: 22, column: 17 }
 			]
 		},
 		{
@@ -308,11 +321,12 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						'foo',
-						'bar'
-				      ],
+					{
+						code: 'NG', 
+					  	errors: [
+							'foo',
+							'bar'
+				      	],
 					},
 				]
 			})
@@ -332,19 +346,26 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG', 
-					  errors: [
-						{ message: 'foo', suggestions: [{ messageId: "fix", output: \`OK\` }] },
-						'bar'
-				      ],
+					{
+						code: 'NG', 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{ messageId: "fix", output: \`OK\` },
+									{ messageId: "fixToRemove", output: \`\` }
+								]
+							},
+							'bar'
+				      	],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 18, column: 7 },
-				{ message: 'Expected \'foo\' but "NG.".', line: 18, column: 7 },
-				{ message: 'Should have 1 error but had 2 definitions.', line: 19, column: 7 }
+				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 8 },
+				{ message: 'Expected \'foo\' but "NG.".', line: 19, column: 8 },
+				{ message: 'Should have 1 error but had 2 definitions.', line: 20, column: 8 }
 			]
 		},
 		{
@@ -391,8 +412,11 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				invalid: [
 					{ code: 'NG; NG;', 
 					  errors: [
-						{ message: "NG.", suggestions: [{ messageId: "fix", output: \`OK; NG;\` }]},
-						{ message: "NG.", suggestions: [{output:'NG; OK;', messageId: "fix"}]}
+						{ message: "NG.", suggestions: [
+							{ messageId: "fix", output: \`OK; NG;\` },
+							{ messageId: "fixToRemove", output: \`; NG;\` }
+						]},
+						{ message: "NG.", suggestions: [{output:'NG; OK;', messageId: "fix"}, { messageId: "fixToRemove", output: \`NG; ;\` }]}
 				      ],
 					},
 				]
@@ -400,8 +424,9 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			`,
 			errors: [
 				{ message: 'Expected "foo" but "NG.".', line: 18, column: 18 },
-				{ message: 'Should have 1 suggestion but had 0 definitions.', line: 18, column: 38 },
+				{ message: 'Should have 2 suggestions but had 0 definitions.', line: 18, column: 38 },
 				{ message: 'Expected "bar" but "NG.".', line: 19, column: 18 },
+				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 19, column: 39 },
 				{ message: "Test must specify either 'messageId' or 'desc'.", line: 19, column: 39 },
 				{ message: 'Should have 2 errors but had 3 definitions.', line: 20, column: 7 }
 			]
@@ -423,12 +448,13 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{ message: 'foo' },
-						'bar',
-						'baz'
-				      ],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{ message: 'foo' },
+							'bar',
+							'baz'
+				      	],
 					},
 				]
 			})
@@ -448,22 +474,29 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{ message: "NG." , suggestions: [{ messageId: "fix", output: \`OK; NG;\` }]},
-						{ message: 'bar', suggestions: [{ messageId: "fix", output: \`NG; OK;\` }] },
-						'baz'
-				      ],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{ message: "NG." },
+							{
+								message: 'bar',
+								suggestions: [
+									{ messageId: "fix", output: \`NG; OK;\` },
+									{ messageId: "fixToRemove", output: \`NG; ;\` }
+								]
+							},
+							'baz'
+				      	],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: "Error should have 'suggestions' but not definitions.", line: 18, column: 7 },
-				{ message: 'Expected "foo" but "NG.".', line: 18, column: 18 },
-				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 7 },
-				{ message: 'Expected \'bar\' but "NG.".', line: 19, column: 7 },
-				{ message: 'Should have 2 errors but had 3 definitions.', line: 20, column: 7 }
+				{ message: "Error should have 'suggestions' but not definitions.", line: 19, column: 8 },
+				{ message: 'Expected "foo" but "NG.".', line: 19, column: 19 },
+				{ message: "Error should have 'suggestions' but not definitions.", line: 20, column: 8 },
+				{ message: 'Expected \'bar\' but "NG.".', line: 20, column: 8 },
+				{ message: 'Should have 2 errors but had 3 definitions.', line: 21, column: 8 }
 			]
 		},
 		{
@@ -483,15 +516,16 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: 'foo',
-							suggestions: [
-								{}
-							]
-						},
-				      ],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{}
+								]
+							},
+						],
 					},
 				]
 			})
@@ -511,24 +545,28 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: "NG.",
-							suggestions: [
-								{messageId: "fix"}
-							]
-						},
-				      { message: "NG.", line: 1, column: 5 }],
+					{
+						code: 'NG; NG;', 
+					  	errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{ messageId: "fix" },
+									{ messageId: "fixToRemove", output: \`; NG;\` }
+								]
+							},
+							{ message: "NG.", line: 1, column: 5 }
+						],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: 'Should have 2 errors but had 1 definitions.', line: 18, column: 7 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 17 },
-				{ message: "Test must specify either 'messageId' or 'desc'.", line: 21, column: 9 },
-				{ message: "Test must specify 'output'.", line: 21, column: 9 }
+				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 10 },
+				{ message: "Test must specify either 'messageId' or 'desc'.", line: 22, column: 10 },
+				{ message: "Test must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -548,17 +586,18 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: 'foo',
-							suggestions: [
-								{
-									messageId: "fix"
-								}
-							]
-						},
-				      ],
+					{
+						code: 'NG; NG;', 
+						errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{
+										messageId: "fix"
+									}
+								]
+							},
+						],
 					},
 				]
 			})
@@ -578,25 +617,30 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			tester.run('ng-id-rule-suggest', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
-					{ code: 'NG; NG;', 
-					  errors: [
-						{
-							message: "NG.",
-							suggestions: [
-								{
-									messageId: "fix"
-								, output: \`OK; NG;\`}
-							]
-						},
-				      { message: "NG.", line: 1, column: 5 }],
+					{
+						code: 'NG; NG;', 
+						errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK; NG;\`
+									},
+									{ messageId: "fixToRemove", output: \`; NG;\` }
+								]
+							},
+							{ message: "NG.", line: 1, column: 5 }
+						],
 					},
 				]
 			})
 			`,
 			errors: [
-				{ message: 'Should have 2 errors but had 1 definitions.', line: 18, column: 7 },
-				{ message: 'Expected "foo" but "NG.".', line: 19, column: 17 },
-				{ message: "Test must specify 'output'.", line: 21, column: 9 }
+				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 10 },
+				{ message: "Test must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -658,16 +702,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 								{
 									messageId: "fix",
 									output: \`OK; NG;\`
-								}
+								},
+								{ messageId: "fixToRemove", output: \`; NG;\` }
 							]
 						},
-				      	{ message:"NG.", line:1, column:5 , suggestions: [{ messageId: "fix", output: \`NG; OK;\` }]}
+				      	{ message:"NG.", line:1, column:5, suggestions: [
+				      		{ messageId: "fix", output: \`NG; OK;\` },
+				      		{ messageId: "fixToRemove", output: \`NG; ;\` }
+				      	] }
 					  ],
 					},
 				]
 			})
 			`,
 			errors: [
+				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 9 },
 				{ message: 'Expected "foo" but "fix".', line: 23, column: 21 },
 				{ message: 'Expected "NG; OK;" but "OK; NG;".', line: 24, column: 18 },
 				{ message: "Error should have 'suggestions' but not definitions.", line: 28, column: 12 }
@@ -732,16 +781,21 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 								{
 									desc: "Fix to OK.",
 									output: \`OK; NG;\`
-								}
+								},
+								{ messageId: "fixToRemove", output: \`; NG;\` }
 							]
 						},
-				      	{ message:"NG.", line:1, column:5 , suggestions: [{ messageId: "fix", output: \`NG; OK;\` }]}
+				      	{ message:"NG.", line:1, column:5, suggestions: [
+				      		{ messageId: "fix", output: \`NG; OK;\` },
+				      		{ messageId: "fixToRemove", output: \`NG; ;\` }
+				      	] }
 					  ],
 					},
 				]
 			})
 			`,
 			errors: [
+				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 9 },
 				{ message: 'Expected "fix" but "Fix to OK.".', line: 23, column: 16 },
 				{ message: 'Expected "NG; OK;" but "OK; NG;".', line: 24, column: 18 },
 				{ message: "Error should have 'suggestions' but not definitions.", line: 28, column: 12 }
@@ -800,7 +854,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -863,7 +918,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -926,7 +982,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -991,7 +1048,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 							message: "NG.",
 							line: 1
 						},
-					  ], output: \`<template><ok /></template>\`,
+					  ],
+					  output: \`<template><ok /></template>\`
 					},
 				]
 			})
@@ -1056,7 +1114,8 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 								line:1,
 								column:1
 							}
-						], output: \`OK\`,
+						],
+						output: \`OK\`
 						
 					},
 				]
@@ -1081,7 +1140,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				}
 			});
 			
-			tester.run('ng-id-rule', rule, {
+			tester.run('ng-id-rule-no-fix', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
@@ -1111,7 +1170,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				}
 			});
 			
-			tester.run('ng-id-rule', rule, {
+			tester.run('ng-id-rule-no-fix', rule, {
 				valid: ['foo', 'bar'],
 				invalid: [
 					{
@@ -1132,6 +1191,637 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Expected 2 but 1.', line: 22, column: 16 },
 				{ message: "Error should not have 'suggestions'.", line: 23, column: 9 },
 				{ message: "Test should not have 'output'.", line: 26, column: 7 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-no-fix.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-no-fix', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						output: \`OK\`,
+						code: 'NG',
+						errors: [
+							{
+								message:"NG.",
+								line:1,
+								column:2,
+								suggestions: [{messageId: "fix", output: 'OK'}]
+							}
+						],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-no-fix.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-no-fix', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+								message:"NG.",
+								line:1,
+								column:1,
+								suggestions: [{messageId: "fix", output: 'OK'}]
+							}
+						],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test should not have 'output'.", line: 17, column: 7 },
+				{ message: 'Expected 2 but 1.', line: 23, column: 16 },
+				{ message: "Error should not have 'suggestions'.", line: 24, column: 9 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						output: \`OK\`,
+						code: 'NG',
+						errors: [
+							{
+								suggestions: [{messageId: "fix", output: 'OK'}]
+							}
+						],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						output: \`OK\`,
+						code: 'NG',
+						errors: [
+							{
+							}
+						],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify either 'messageId' or 'message'.", line: 20, column: 8 },
+				{ message: "Error should not have 'suggestions'.", line: 21, column: 9 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+							}
+						],
+						
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+								messageId: "forbidden"
+							}
+						],
+						output: \`OK\`
+						
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: "Test must specify either 'messageId' or 'message'.", line: 19, column: 8 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [
+							{ message: "NG.", line: 1, column: 1 },
+							{ message: "NG.", line: 1, column: 5 }
+						],
+						output: \`OK; OK;\`
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [
+						],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG;',
+						errors: [
+							{ message: "NG.", line: 1, column: 1 },
+							{ message: "NG.", line: 1, column: 5 }
+						],
+						output: \`OK; OK;\`
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
+			]
+		},
+		{
+			filename,
+			code: String.raw`
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG("\\n");',
+						errors: [
+						],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG; NG("\\\\n");',
+						errors: [
+							{ message: "NG.", line: 1, column: 1 },
+							{ message: "NG.", line: 1, column: 5 }
+						],
+						output: String.raw\`OK; OK("\\n");\`
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test must specify 'output'.", line: 16, column: 6 },
+				{ message: 'Should have 2 errors but had 0 definitions.', line: 18, column: 15 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-suggest.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;
+						NG;\`, 
+					  	errors: [
+							'foo',
+							'bar'
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-suggest.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;
+						NG;\`, 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK;
+						NG;\`
+									},
+									{
+										messageId: "fixToRemove",
+										output: \`;
+						NG;\`
+									}
+								]
+							},
+							{
+								message: 'bar',
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`NG;
+						OK;\`
+									},
+									{
+										messageId: "fixToRemove",
+										output: \`NG;
+						;\`
+									}
+								]
+							}
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Error should have 'suggestions' but not definitions.", line: 20, column: 8 },
+				{ message: 'Expected \'foo\' but "NG.".', line: 20, column: 8 },
+				{ message: "Error should have 'suggestions' but not definitions.", line: 21, column: 8 },
+				{ message: 'Expected \'bar\' but "NG.".', line: 21, column: 8 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-suggest.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;
+						NG;\`, 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK;
+						NG;\`
+									},
+								]
+							},
+							{
+								message: 'bar',
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`NG;
+						OK;\`
+									},
+									{
+										messageId: "fixToRemove",
+										output: \`NG;
+						;\`
+									}
+								]
+							}
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-suggest.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;
+						NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK;
+						NG;\`
+									},
+									{
+										messageId: "fixToRemove",
+										output: \`;
+						NG;\`
+									}
+								]
+							},
+							{
+								message: "NG.",
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`NG;
+						OK;\`
+									},
+									{
+										messageId: "fixToRemove",
+										output: \`NG;
+						;\`
+									}
+								]
+							}
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: 'Expected "foo" but "NG.".', line: 21, column: 18 },
+				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 23, column: 10 },
+				{ message: 'Expected "bar" but "NG.".', line: 31, column: 18 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-suggest.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK;
+						NG;\`
+									},
+									{ messageId: "fixToRemove", output: \`;\` },
+									{}
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-suggest.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-suggest', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{
+										messageId: "fix",
+										output: \`OK;\`
+									},
+									{ messageId: "fixToRemove", output: \`;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: 'Expected "foo" but "NG.".', line: 20, column: 18 },
+				{ message: 'Expected "OK;\\n\\t\\t\\t\\t\\t\\tNG;" but "OK;".', line: 24, column: 19 },
+				{ message: 'Should have 2 suggestions but had 3 definitions.', line: 28, column: 10 }
 			]
 		}
 	]
