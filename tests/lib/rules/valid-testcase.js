@@ -582,7 +582,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 					line: 22,
 					column: 10
 				},
-				{ message: "Test case must specify 'output'.", line: 22, column: 10 }
+				{ message: "Suggestion item must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -664,7 +664,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Should have 2 errors but had 1 definitions.', line: 19, column: 8 },
 				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 18 },
 				{ message: 'Should have 2 suggestions but had 1 definitions.', line: 22, column: 10 },
-				{ message: "Test case must specify 'output'.", line: 22, column: 10 }
+				{ message: "Suggestion item must specify 'output'.", line: 22, column: 10 }
 			]
 		},
 		{
@@ -2022,16 +2022,18 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ messageId: 'extraMessageId', line: 21, column: 9 },
 				{
 					messageId: 'extraData',
+					data: { kind: 'Error' },
 					line: 22,
 					column: 9
 				},
 				{
-					messageId: 'extraMessageId',
+					messageId: 'extraSuggestionDesc',
 					line: 26,
 					column: 32
 				},
 				{
 					messageId: 'extraData',
+					data: { kind: 'Suggestion' },
 					line: 26,
 					column: 50
 				}
@@ -2119,7 +2121,7 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 					column: 32
 				},
 				{
-					message: "Error item should not specify both 'message' and a 'messageId'.",
+					message: "Error item should not specify both 'desc' and a 'messageId'.",
 					line: 26,
 					column: 52
 				}
@@ -2195,6 +2197,81 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				{ message: 'Expected "foo" but the result was "forbidden".', line: 20, column: 20 },
 				{ message: 'Expected "foo" but the result was "NG".', line: 22, column: 14 },
 				{ message: 'Expected "bar" but the result was "OK".', line: 25, column: 42 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								messageId: "forbidden",
+								data: {},
+								suggestions: [
+									{ messageId: "fix", data: {}, output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								messageId: "forbidden",
+								data: { id: "NG" },
+								suggestions: [
+									{ messageId: "fix", data: { id: "OK" }, output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{
+					message: "Data must specify 'id'.",
+					line: 21,
+					column: 15
+				},
+				{
+					message: "Data must specify 'id'.",
+					line: 23,
+					column: 36
+				}
 			]
 		},
 		{
