@@ -555,7 +555,15 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 									{ messageId: "fixToRemove", output: \`; NG;\` }
 								]
 							},
-							{ message: "NG.", line: 1, column: 5 }
+							{
+					  			message: "NG.",
+					  			line: 1,
+					  			column: 5,
+					  			suggestions: [
+					  				{ messageId: "fix", output: \`NG; OK;\` },
+					  				{ messageId: "fixToRemove", output: \`NG; ;\` }
+					  			]
+					  		}
 						],
 					},
 				]
@@ -630,7 +638,15 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 									{ messageId: "fixToRemove", output: \`; NG;\` }
 								]
 							},
-							{ message: "NG.", line: 1, column: 5 }
+							{
+								message: "NG.",
+								line: 1,
+								column: 5,
+								suggestions: [
+									{ messageId: "fix", output: \`NG; OK;\` },
+									{ messageId: "fixToRemove", output: \`NG; ;\` }
+								]
+							}
 						],
 					},
 				]
@@ -1857,6 +1873,488 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 				},
 				{ message: 'Should have 2 suggestions but had 3 definitions.', line: 28, column: 10 }
 			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								messageId: 'foo',
+								suggestions: [
+									{ messageId: "foo", output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								messageId: "forbidden",
+								suggestions: [
+									{ messageId: "fix", output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ messageId: 'mismatch', line: 20, column: 20 },
+				{ message: 'Expected "foo" but the result was "fix".', line: 22, column: 23 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								messageId: 'forbidden',
+								data: {
+									id: 'NG'
+								},
+								suggestions: [
+									{ desc: "Fix to OK.", messageId: "fix", data: { id: 'OK' }, output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								data: {
+									id: 'NG'
+								},
+								suggestions: [
+									{ desc: "Fix to OK.", data: { id: 'OK' }, output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ messageId: 'extraMessageId', line: 21, column: 9 },
+				{ message: "Error should not specify both 'data' and 'message'.", line: 22, column: 9 },
+				{
+					message: "Error should not specify both 'message' and a 'messageId'.",
+					line: 26,
+					column: 32
+				},
+				{ message: "Error should not specify both 'data' and 'message'.", line: 26, column: 50 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								data: {
+									id: 'NG'
+								},
+								messageId: 'forbidden',
+								suggestions: [
+									{ desc: "Fix to OK.", data: { id: 'OK' }, messageId: 'fix', output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								messageId: 'forbidden',
+								suggestions: [
+									{ desc: "Fix to OK.", messageId: 'fix', output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Error should not specify both 'data' and 'message'.", line: 21, column: 9 },
+				{
+					message: "Error should not specify both 'message' and a 'messageId'.",
+					line: 24,
+					column: 9
+				},
+				{ message: "Error should not specify both 'data' and 'message'.", line: 26, column: 32 },
+				{
+					message: "Error should not specify both 'message' and a 'messageId'.",
+					line: 26,
+					column: 52
+				}
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								messageId: 'foo',
+								data: {
+									id: 'foo'
+								},
+								suggestions: [
+									{ messageId: "fix", data: { id: 'bar' }, output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-with-data.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-with-data', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								messageId: "forbidden",
+								data: {
+									id: "NG"
+								},
+								suggestions: [
+									{ messageId: "fix", data: { id: "OK" }, output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: 'Expected "foo" but the result was "forbidden".', line: 20, column: 20 },
+				{ message: 'Expected "foo" but the result was "NG".', line: 22, column: 14 },
+				{ message: 'Expected "bar" but the result was "OK".', line: 25, column: 42 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-raw-message.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-raw-message', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: 'foo',
+								suggestions: [
+									{ desc: "foo", output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-raw-message.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-raw-message', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								message: "NG.",
+								suggestions: [
+									{ desc: "Fix to OK.", output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: 'Expected "foo" but the result was "NG.".', line: 20, column: 18 },
+				{ message: 'Expected "foo" but the result was "Fix to OK.".', line: 22, column: 18 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-raw-message.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-raw-message', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								suggestions: [
+									{ output: \`OK;\` }
+								]
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-raw-message.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-raw-message', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+							{
+								suggestions: [
+									{ output: \`OK;\`, desc: "Fix to OK." }
+								],
+								message: "NG."
+							},
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: "Test case must specify either 'messageId' or 'message'.", line: 19, column: 8 },
+				{ message: "Test must specify either 'messageId' or 'desc'.", line: 21, column: 10 }
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-raw-message.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-raw-message', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+				      	],
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-raw-message.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-raw-message', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: \`NG;\`, 
+					  	errors: [
+					  		{
+					  			message: "NG.",
+					  			line: 1,
+					  			column: 1,
+					  			suggestions: [
+					  				{ desc: "Fix to OK.", output: \`OK;\` }
+					  			]
+					  		}
+				      	],
+					},
+				]
+			})
+			`,
+			errors: [{ message: 'Should have 1 error but had 0 definitions.', line: 18, column: 17 }]
 		}
 	]
 });
