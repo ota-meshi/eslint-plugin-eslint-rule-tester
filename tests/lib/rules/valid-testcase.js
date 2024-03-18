@@ -1314,6 +1314,83 @@ tester.run('valid-testcase', /** @type {any} */ (rule), {
 			code: `
 			'use strict';
 			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-has-fix-but-no-fix.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-has-fix-but-no-fix', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+								message:"NG.",
+								line:1,
+								column:2,
+								suggestions: [{messageId: "fix", output: 'OK'}]
+							}
+						],
+						output: \`OK\`,
+					},
+				]
+			})
+			`,
+			output: `
+			'use strict';
+			const { RuleTester } = require('eslint');
+			const rule = require('../rules/ng-id-rule-has-fix-but-no-fix.js');
+			
+			const tester = new RuleTester({
+				languageOptions: {
+					ecmaVersion: 2020,
+					sourceType: 'module'
+				}
+			});
+			
+			tester.run('ng-id-rule-has-fix-but-no-fix', rule, {
+				valid: ['foo', 'bar'],
+				invalid: [
+					{
+						code: 'NG',
+						errors: [
+							{
+								message:"NG.",
+								line:1,
+								column:1,
+								suggestions: [{messageId: "fix", output: 'OK'}]
+							}
+						],
+						output: null,
+					},
+				]
+			})
+			`,
+			errors: [
+				{ message: 'Expected 2 but the result was 1.', line: 22, column: 16 },
+				{
+					message:
+						"Error item should have no 'suggestions'. Because there are no 'suggestions' in the test case result.",
+					line: 23,
+					column: 9
+				},
+				{
+					message: 'Expected "OK" but the result was null.',
+					line: 26,
+					column: 15
+				}
+			]
+		},
+		{
+			filename,
+			code: `
+			'use strict';
+			const { RuleTester } = require('eslint');
 			const rule = require('../rules/ng-id-rule.js');
 			
 			const tester = new RuleTester({
