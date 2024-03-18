@@ -1,5 +1,11 @@
 # eslint-plugin-eslint-rule-tester
 
+## 0.5.1
+
+### Patch Changes
+
+- Fix false positive for `output: null` ([#24](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/24))
+
 ## 0.5.0
 
 ### Minor Changes
