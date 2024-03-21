@@ -25,7 +25,6 @@ export interface RuleTesterConfig extends Record<string, unknown> {
 }
 export type LinterWorkerService = {
 	getLinterResult: (config: Config) => Messages | null;
-	terminate: () => void;
 };
 export type Messages = {
 	errors: Message[];
