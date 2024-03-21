@@ -1,5 +1,11 @@
 # eslint-plugin-eslint-rule-tester
 
+## 0.6.0
+
+### Minor Changes
+
+- feat: add support for esbuild-register ([#26](https://github.com/ota-meshi/eslint-plugin-eslint-rule-tester/pull/26))
+
 ## 0.5.1
 
 ### Patch Changes
