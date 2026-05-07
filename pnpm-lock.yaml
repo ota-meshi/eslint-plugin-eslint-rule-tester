@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^8.44.0
     version: 8.56.5
   '@types/eslint-scope':
-    specifier: ^8.0.0
-    version: 8.3.0
+    specifier: ^9.0.0
+    version: 9.1.0
   '@types/eslint-utils':
     specifier: ^3.0.5
     version: 3.0.5
@@ -991,11 +991,11 @@ packages:
       '@types/ms': 0.7.34
     dev: true
 
-  /@types/eslint-scope@8.3.0:
-    resolution: {integrity: sha512-FaY/QEfIyGJzJdkObuvtaROKv7A0zArw+be0tgXfWd1s1/AqPzEbyf7eyK0Pg0YezUpKrSwK4kgBn/kjzQOjtQ==}
+  /@types/eslint-scope@9.1.0:
+    resolution: {integrity: sha512-ZdRd/C3bTObl4fZ6d7iXN2AVv20waMU2tPy1W24e6ECLbB8T9fBxtONKZUpIpYHShMVk6cDNP9QMVw7Qdqsd/w==}
+    deprecated: This is a stub types definition. eslint-scope provides its own type definitions, so you do not need this installed.
     dependencies:
-      '@types/eslint': 8.56.5
-      '@types/estree': 1.0.5
+      eslint-scope: 8.2.0
     dev: true
 
   /@types/eslint-utils@3.0.5:
